@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>cf225425-bc03-47a8-95cb-772d220c14de</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>program.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Web launcher</LaunchProvider>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+    <Name>Meolask</Name>
+    <RootNamespace>Meolask</RootNamespace>
+    <InterpreterId>MSBuild|env-meolask-py3.9|$(MSBuildProjectFullPath)</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Meolask\example\controllers\example_view.py" />
+    <Compile Include="Meolask\example\init.py" />
+    <Compile Include="Meolask\example\program.py" />
+    <Compile Include="settings.py" />
+    <Compile Include="Meolask\example\controllers\example_blueprint.py" />
+    <Compile Include="Meolask\example\controllers\example_method_view.py" />
+    <Compile Include="Meolask\example\controllers\registers\register_controller.py" />
+    <Compile Include="Meolask\meolask.py" />
+    <Compile Include="Meolask\register.py" />
+    <Compile Include="Meolask\swagger\meowagger.py" />
+    <Compile Include="Meolask\template.py" />
+    <Compile Include="program.py" />
+    <Compile Include="Meolask\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Meolask\" />
+    <Folder Include="Meolask\example\" />
+    <Folder Include="Meolask\example\controllers\" />
+    <Folder Include="Meolask\example\controllers\registers\" />
+    <Folder Include="Meolask\swagger\" />
+    <Folder Include="Meolask\static\" />
+    <Folder Include="Meolask\static\content\" />
+    <Folder Include="Meolask\static\fonts\" />
+    <Folder Include="Meolask\static\scripts\" />
+    <Folder Include="Meolask\templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Meolask\swagger\swagger.json" />
+    <Content Include="requirements.txt" />
+    <Content Include="Meolask\static\content\bootstrap.css" />
+    <Content Include="Meolask\static\content\bootstrap.min.css" />
+    <Content Include="Meolask\static\content\site.css" />
+    <Content Include="Meolask\static\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Meolask\static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Meolask\static\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Meolask\static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Meolask\static\scripts\bootstrap.js" />
+    <Content Include="Meolask\static\scripts\bootstrap.min.js" />
+    <Content Include="Meolask\static\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Meolask\static\scripts\jquery-1.10.2.js" />
+    <Content Include="Meolask\static\scripts\jquery-1.10.2.min.js" />
+    <Content Include="Meolask\static\scripts\jquery-1.10.2.min.map" />
+    <Content Include="Meolask\static\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Meolask\static\scripts\jquery.validate.js" />
+    <Content Include="Meolask\static\scripts\jquery.validate.min.js" />
+    <Content Include="Meolask\static\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Meolask\static\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Meolask\static\scripts\modernizr-2.6.2.js" />
+    <Content Include="Meolask\static\scripts\respond.js" />
+    <Content Include="Meolask\static\scripts\respond.min.js" />
+    <Content Include="Meolask\static\scripts\_references.js" />
+    <Content Include="Meolask\templates\about.html" />
+    <Content Include="Meolask\templates\contact.html" />
+    <Content Include="Meolask\templates\index.html" />
+    <Content Include="Meolask\templates\layout.html" />
+    <Content Include="settings.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env-meolask-py3.9\">
+      <Id>env-meolask-py3.9</Id>
+      <Version>3.9</Version>
+      <Description>env-meolask-py3.9 (Python 3.9 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MeowkitPy\MeowkitPy\MeowkitPy.pyproj">
+      <Name>MeowkitPy</Name>
+      <Project>{8090ec08-902d-44f0-b645-c5203d21a63b}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
