@@ -8,19 +8,16 @@ class Meowagger():
     def __init__(self,
             url_prefix: str='/swagger/index',
             url_suffix: str='/swagger.json',
-            dbgInfo: bool=False
+            mode_debug: bool=False
     ) -> None:
         self.url_prefix = url_prefix
         self.url_suffix = url_suffix
         self.api_url = url_prefix + url_suffix
-        self.dbgInfo = dbgInfo
+        self.mode_debug = mode_debug
 
         self.blueprint = get_swaggerui_blueprint(self.url_prefix, self.api_url)
         self.register_local()
         self.use_swagger_template()
-    
-        if dbgInfo == True:
-            log.LogInfomation("Registered >> '" + self.api_url + "' (*Remark: /xxx.json not a Route)")
 
     # 指定 Swagger 模板
     def use_swagger_template(self, path: str='./Meolask/Swagger/swagger.json') -> None:

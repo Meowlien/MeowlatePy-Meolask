@@ -3,20 +3,12 @@ from datetime import datetime
 from Meolask.meolask import Meolask
 from MeowkitPy.logging.logger import log
 
-def example_view(app: Meolask, url_prefix: str='/api/example/view', mode_debug: bool=False):
+def example_view(app: Meolask, url_prefix: str='/api/example/view', mode_debug: bool=False, service: object=None):
 
-    # For Debug
-    # -----------------------------------------------------
-    if mode_debug == True:
-        log.LogInfomation("Registered >> '" + url_prefix)
-
-    # -----------------------------------------------------
-
-    # 服務注冊器：自行調整服務對象(object)形態
-    service: object
-    def service_register(svc: object) -> None:
-        service = svc
-
+    # 前置檢查：是否有服務對象
+    #if service == None:
+    #    log.LogWarning(f'Registering [Fail] >> {url_prefix}')
+    #    raise AttributeError(f'Service cannot be None!')
 
     # Post 範例
     @app.route(url_prefix + '/post', methods=['POST'])
@@ -54,7 +46,6 @@ def example_view(app: Meolask, url_prefix: str='/api/example/view', mode_debug: 
             print("Do Somthing")
 
         return 'example_view >> result'
-
 
     # Home
     @app.route(url_prefix + '/')

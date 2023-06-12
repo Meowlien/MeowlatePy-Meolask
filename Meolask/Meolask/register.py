@@ -8,5 +8,5 @@ from Meolask.swagger.meowagger import Meowagger
 class ControllerRegister(ControllerRegisterTemplate):
     # [Override]
     def register(self) -> None:
-        self._register_blueprint(Meowagger(          '/api/swagger',       dbgInfo=self._mode_debug).blueprint) # OpenApi
+        self._register_blueprint(Meowagger(          '/api/swagger',       mode_debug=self._mode_debug).blueprint) # OpenApi
         # More...

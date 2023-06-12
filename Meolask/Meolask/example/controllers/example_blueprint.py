@@ -9,13 +9,13 @@ class ExampleBlueprintController(BlueprintTemplate):
 
     def __init__(self,
         url_prefix=None,
-        dbgInfo: bool=False
+        mode_debug: bool=False
     ) -> None:
         super().__init__(
             name=self.__class__.__name__,
             name_import=__name__.replace('.', '_') + '_bp',
             url_prefix=url_prefix,
-            dbgInfo=dbgInfo
+            mode_debug=mode_debug
         )
 
     # 路由注冊

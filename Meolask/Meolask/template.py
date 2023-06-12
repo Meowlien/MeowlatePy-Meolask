@@ -1,9 +1,7 @@
 ﻿from flask import Flask
 from flask import Blueprint
 from flask.views import MethodView
-
 from MeowkitPy.logging.logger import log
-
 import typing as t
 
 # 模板-方法視圖
@@ -17,12 +15,12 @@ class MethodViewTemplate(MethodView):
         self._view = view
 
     # 構建式
-    def __init__(self, name: str='_view`', rule: str=None, dbgInfo: bool=False) -> None:
+    def __init__(self, name: str='_view`', rule: str=None, mode_debug: bool=False) -> None:
         super().__init__()
         self.name = name.replace('.', '_') + '_view'
         self.rule = rule
-        if dbgInfo == True:
-            log.LogInfomation("Registered >> '" + self.rule + "'")
+        #if mode_debug == True:
+        #    log.LogInfomation("Registered >> '" + self.rule + "'")
 
     
     # 一般路由注冊器
@@ -36,13 +34,35 @@ class MethodViewTemplate(MethodView):
 # 模板-藍圖
 class BlueprintTemplate(Blueprint):
 
-    def __init__(self, name: str='_bp`', name_import: str=__name__, url_prefix=None, dbgInfo: bool=False) -> None:
+    def __init__(self, name: str='_bp`', name_import: str=__name__, url_prefix=None, mode_debug: bool=False) -> None:
         super().__init__(name, name_import, url_prefix=url_prefix)
         self.register_local()
-        if dbgInfo == True:
-            log.LogInfomation("Registered >> '" + self.url_prefix + "'")
+        #if mode_debug == True:
+        #    log.LogInfomation("Registered >> '" + self.url_prefix + "'")
 
     def register_local(self) -> None:
+        pass
+
+# 模板-服務
+class ServiceTemplate():
+
+    def __init__(self, name: str=None) -> None:
+        self.name = name
+
+# 模板-資料庫
+class DatabaseContextRegisterTemplate():
+
+    def __init__(self, app, mode_debug: bool=False) -> None:
+        self._app = app
+        self._mode_debug = mode_debug
+        self._init()
+
+    # [abstruct]
+    def _init(self) -> None:
+        pass
+
+    # [abstruct]
+    def register(self) -> None:
         pass
 
 # 模板-控制器注冊
