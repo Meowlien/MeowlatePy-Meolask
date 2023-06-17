@@ -1,31 +1,53 @@
 ﻿from flask import Flask
 from MeowkitPy.logging.logger import log
-from Meolask.template import (
-    DatabaseContextRegisterTemplate,
-    ServiceTemplate,
-    ControllerRegisterTemplate
-)
+from Meolask.template import *
+
+import typing as t
 
 class Meolask(Flask):
 
-    services = {}
-    services_info = {}
+    mode_debug: bool = True
 
-    def register_service(self, svc: ServiceTemplate, key: str, more_info: str=None):
-        if key in self.services:
-            log.LogError(f'Registered (Service) Fail >> {key} >> key is already in use')
-        else:
-            self.services[key] = svc
-            self.services_info[key] = more_info
-            log.LogInfomation(f'Registered (Service) >> {key}')
+    # 注冊：資料庫上下文清單
+    def register_database(self, dbCtxs: RegisterTemplate, db: ServiceTemplate) -> None:
+        dbCtxs.register(self, db)
 
-    # 注冊：資料庫
-    def register_database(self, database_register: DatabaseContextRegisterTemplate) -> None:
-        database_register.register()
+    # 注冊：MongoDbCtx
+    def register_mongodbCtx(self, dbCtxs: dict[str,ServiceTemplate]):
+        self.mongodbCtxs = dbCtxs
+        for val in dbCtxs:
+            log.LogInfomation(f'Registered (DbCtx) >> {val}')
 
-    # 注冊：控制器
-    def register_controller(self, controller_register: ControllerRegisterTemplate) -> None:
-        controller_register.register()
+    # 注冊：PgSQLDbCtx
+    # todo:
+
+    # 注冊：控制器清單
+    def register_controllers(self, controllers: RegisterTemplate) -> None:
+            controllers.register(self)
+
+
+    # 注冊：視圖(New)
+    def register_view(self, view: any, url_prefix: str='/api/view', services: dict[str,ServiceTemplate]=None) -> None:
+        try:
+            view(self, url_prefix, services)
+        except Exception as e:
+            log.LogError(f'{e}')
+
+    # 注冊：方法視圖
+    def register_method_view(self, view: MethodViewTemplate, services: dict[str,ServiceTemplate]=None) -> None:
+        view.register(self)
+        if services != None:
+            view.service_register(services)
+
+    ## 注冊：藍圖
+    #def register_blueprint(self, blueprint: BlueprintTemplate, **options: t.Any) -> None:
+    #    self.register_blueprint(blueprint, **options)
+
+
+
+
+
+
 
 
 

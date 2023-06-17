@@ -3,7 +3,9 @@ from datetime import datetime
 from Meolask.meolask import Meolask
 from MeowkitPy.logging.logger import log
 
-def example_view(app: Meolask, url_prefix: str='/api/example/view', mode_debug: bool=False, service: object=None):
+def example_view(app: Meolask, url_prefix: str='/api/example/view', service: object=None):
+
+    mode_debug = app.mode_debug
 
     # 前置檢查：是否有服務對象
     #if service == None:

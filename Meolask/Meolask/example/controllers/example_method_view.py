@@ -9,8 +9,8 @@ from MeowkitPy.logging.logger import log
 class ExampleMethodViewController(MethodViewTemplate):
 
     # Constructor 建構式
-    def __init__(self, rule: str='/api', mode_debug: bool=False) -> None:
-        super().__init__(__name__, rule, mode_debug)
+    def __init__(self, rule: str='/api') -> None:
+        super().__init__(__name__, rule)
         self.view = ExampleMethodViewController.as_view(self.name)
 
     # [Override] 路由注冊

@@ -1,8 +1,7 @@
-﻿from flask import Flask
+﻿from flask import Flask # 導入 Meolask 會造成循環呼叫
 from flask import Blueprint
 from flask.views import MethodView
 from MeowkitPy.logging.logger import log
-import typing as t
 
 # 模板-方法視圖
 class MethodViewTemplate(MethodView):
@@ -15,13 +14,10 @@ class MethodViewTemplate(MethodView):
         self._view = view
 
     # 構建式
-    def __init__(self, name: str='_view`', rule: str=None, mode_debug: bool=False) -> None:
+    def __init__(self, name: str='_view`', rule: str=None) -> None:
         super().__init__()
         self.name = name.replace('.', '_') + '_view'
         self.rule = rule
-        #if mode_debug == True:
-        #    log.LogInfomation("Registered >> '" + self.rule + "'")
-
     
     # 一般路由注冊器
     def register(self, app: Flask) -> None:
@@ -49,56 +45,9 @@ class ServiceTemplate():
     def __init__(self, name: str=None) -> None:
         self.name = name
 
-# 模板-資料庫
-class DatabaseContextRegisterTemplate():
-
-    def __init__(self, app, mode_debug: bool=False) -> None:
-        self._app = app
-        self._mode_debug = mode_debug
-        self._init()
+# 模板-注冊器
+class RegisterTemplate():
 
     # [abstruct]
-    def _init(self) -> None:
+    def register(self, app: Flask) -> None:
         pass
-
-    # [abstruct]
-    def register(self) -> None:
-        pass
-
-# 模板-控制器注冊
-class ControllerRegisterTemplate():
-
-    '''
-    :param app: Type >> Meolask
-    '''
-    def __init__(self, app, mode_debug: bool=False) -> None:
-        self._app = app
-        self._mode_debug = mode_debug
-        self._init()
-
-    # [abstruct]
-    def _init(self) -> None:
-        pass
-
-    # [abstruct]
-    def register(self) -> None:
-        pass
-
-    # 注冊：視圖
-    def _register_view(self, view: any, url_prefix: str='/api/view', mode_debug: bool=False, service: object=None) -> None:
-        try:
-            view(self._app, url_prefix, mode_debug, service)
-        except Exception as e:
-            log.LogError(f'View Register Fail! >> {e}')
-
-    # 注冊：方法視圖
-    def _register_method_view(self, view: MethodViewTemplate, service: object=None) -> None:
-        view.register(self._app)
-        if service != None:
-            view.service_register(service)
-
-    # 注冊：藍圖
-    def _register_blueprint(self, blueprint: BlueprintTemplate, **options: t.Any) -> None:
-        self._app.register_blueprint(blueprint, **options)
-
-
