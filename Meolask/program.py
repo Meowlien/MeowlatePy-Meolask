@@ -1,6 +1,7 @@
 ﻿'''
 - 請勿參考：如需參考(主程式)範例 >> 請至 example.program.py
 '''
+from doctest import debug
 from MeowkitPy.logging.logger import log
 
 proj_test: bool = True
@@ -36,4 +37,4 @@ else:
         HOST = config.HOST
         PORT = config.PORT
 
-        app.run(HOST, PORT)
+        app.run(HOST, PORT, debug=False)

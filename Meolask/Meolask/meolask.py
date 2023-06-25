@@ -8,17 +8,19 @@ class Meolask(Flask):
 
     mode_debug: bool = True
 
+    # 注冊：服務(不屬於控制器)
+    def register_services(self, services: RegisterTemplate) -> None:
+        services.register(self)
+
     # 注冊：資料庫上下文清單
     def register_database(self, dbCtxs: RegisterTemplate, db: ServiceTemplate) -> None:
         dbCtxs.register(self, db)
 
-    # 注冊：MongoDbCtx
+    # 注冊：資料庫上下文清單.MongoDbCtx
     def register_mongodbCtx(self, dbCtxs: dict[str,ServiceTemplate]):
-        self.mongodbCtxs = dbCtxs
-        for val in dbCtxs:
-            log.LogInfomation(f'Registered (DbCtx) >> {val}')
+        self.mongodbCtxs = dbCtxs # BUG: 把注冊上下文給 Meowlask 不合適
 
-    # 注冊：PgSQLDbCtx
+    # 注冊：資料庫上下文清單.PgSQLDbCtx
     # todo:
 
     # 注冊：控制器清單
