@@ -50,11 +50,34 @@ class BlueprintTemplate(ABC, Blueprint):
     def register_local(self) -> None:
         pass
 
-# 模板-注冊器
+# 注冊表 >> 改成 注冊器： Register >> 用於保存注冊内容
+# 注冊表只有一個(Registry)，注冊器可以有很多個(Register) >> 注意注冊的基底類型
+class Registry(ABC):
+    _registry: dict[str, ServiceTemplate] = None
+
+    @staticmethod
+    def initialize():
+        Registry._registry = {}
+
+
+# 模板-注冊器 >> 改成 interface >> IRegister(ABC):
 class RegisterTemplate(ABC):
 
-    # 注冊表 >> 全局唯一
-    _registry: dict[str, ServiceTemplate] = {}
+    # 注冊表
+    _registry: dict[str, ServiceTemplate] = None
+
+    def __init__(self) -> None:
+        super().__init__()
+        if RegisterTemplate._registry is None:
+            raise Exception('\n\n>>>> Pls setup container of register before first instance!\n')
+
+    @staticmethod
+    def initialize(
+        container_registry: dict[str, ServiceTemplate]
+    ):
+        container_registry = RegisterTemplate._registry = {}
+        print(f'TEST: {id(RegisterTemplate._registry)} >> origin')
+        print(f'TEST: {id(container_registry)} >> argument')
 
     # 注冊
     @abstractmethod
@@ -87,6 +110,16 @@ class RegisterTemplate(ABC):
         return table
 
     @staticmethod
+    def get(key: str, default: any=None):
+        return RegisterTemplate._registry.get(key, default)
+
+    @staticmethod
     def show():
         for key, val in RegisterTemplate._registry.items():
             log.LogInfomation(f'Registered (Service) >> {val.id}')
+
+    # DEBUG 驗證
+    @staticmethod
+    def debug_compare_registry(container):
+        print(f'TEST: {id(RegisterTemplate._registry)} >> origin')
+        print(f'TEST: {id(container)} >> argument')
