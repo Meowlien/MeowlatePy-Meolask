@@ -3,7 +3,7 @@ from datetime import datetime
 from Meolask.meolask import Meolask
 from MeowkitPy.logging.logger import log
 
-def example_view(app: Meolask, url_prefix: str='/api/example/view', service: object=None):
+def example_view(app: Meolask, url_prefix: str='/api/example/view', svc_registration_info: object=None):
 
     mode_debug = app.mode_debug
 

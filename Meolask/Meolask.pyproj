@@ -31,6 +31,9 @@
     <Compile Include="Meolask\example\controllers\example_view.py" />
     <Compile Include="Meolask\example\init.py" />
     <Compile Include="Meolask\example\program.py" />
+    <Compile Include="Meolask\modules\container.py" />
+    <Compile Include="Meolask\modules\service.py" />
+    <Compile Include="Meolask\modules\template_meolask_register.py" />
     <Compile Include="settings.py" />
     <Compile Include="Meolask\example\controllers\example_blueprint.py" />
     <Compile Include="Meolask\example\controllers\example_method_view.py" />
@@ -46,6 +49,7 @@
     <Folder Include="Meolask\" />
     <Folder Include="Meolask\example\" />
     <Folder Include="Meolask\example\controllers\" />
+    <Folder Include="Meolask\modules\" />
     <Folder Include="Meolask\swagger\" />
     <Folder Include="Meolask\static\" />
     <Folder Include="Meolask\static\content\" />
