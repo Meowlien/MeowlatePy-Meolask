@@ -28,7 +28,7 @@ class Container(IContainer):
     def __init__(self, build_container: bool=True, container_ptr: dict=None) -> None:
         super().__init__()
         self._container: dict = None
-        self.type: Container.Type = Container.Type.Unknown
+        self.type: Container.Type = Container.Type.Unknown  # 當前容器的創建方法
 
         # 創建容器
         if build_container == True:
