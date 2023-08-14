@@ -9,22 +9,22 @@ class ServiceTemplate(ABC):
 
     def __init__(self, id: str=None, name: str=None) -> None:
         self.id = id
-        self.name = name
+        self.name = name #OBS
 
 # (容器) 服務項
 class ServiceContainer(Container):
 
     # [abs:override]: 添加服務項(注冊) -> dict[服務對象ID, 注冊狀態]
     def add(self, services: list[ServiceTemplate]) -> dict[str, str]:
-        out: dict[str, str] = {}
+        #out: dict[str, str] = {}
         for svc in services:
-            if self._container.get(svc.id, None) is None:
+            if self._container.get(svc.id, None) is None: # 檢查是否已存在字典中
                 self._container[svc.id] = svc
-                out[svc.id] = 'success'
+                #out[svc.id] = 'success'
             else:
                 log.LogWarning(f'{svc.id} is already add | registered.')
-                out[svc.id] = 'fail'
-        return out
+                #out[svc.id] = 'fail'
+        #return out
 
     # [abs:override]: 移除服務項(注銷)
     def remove(self, collect: Union[list[str], list[ServiceTemplate]]) -> bool:
@@ -67,9 +67,9 @@ class ServiceContainer(Container):
 # 服務注冊器
 class ServiceRegister(IRegister):
 
-    def __init__(self, container_ptr: dict) -> None:
+    def __init__(self, ref_container: dict) -> None:
         super().__init__() 
-        self._container = ServiceContainer(False, container_ptr) # 設定參考對象
+        self._container = ServiceContainer(ref_container) # 設定參考對象
 
     # 注冊服務項 -> dict[服務對象ID, 注冊狀態]
     def register(self, services: list[ServiceTemplate]) -> dict[str, str]:

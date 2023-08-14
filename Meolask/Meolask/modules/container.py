@@ -1,5 +1,5 @@
 ﻿from abc import ABC, abstractmethod
-from ast import Global
+#from ast import Global
 from enum import Enum, auto
 
 # 容器界面
@@ -25,22 +25,17 @@ class Container(IContainer):
         Object = auto()
         Reference = auto()
 
-    def __init__(self, build_container: bool=True, container_ptr: dict=None) -> None:
+    '''
+    param: <build_container: bool>: 是否創建容器
+    '''
+    def __init__(self, ref_container: dict=None) -> None:
         super().__init__()
-        self._container: dict = None
-        self.type: Container.Type = Container.Type.Unknown  # 當前容器的創建方法
 
-        # 創建容器
-        if build_container == True:
+        if ref_container == None:
             self._container: dict = {}
             self.type = Container.Type.Object
-        # 不創建容器則
         else:
-            # 必須提供容器指標
-            if container_ptr == None:
-                # >>> 請在第一次實例化前，設定容器引用對象(即：請先先呼叫 initialize(obj: dict) 進行初始化)
-                raise Exception("\n\n>>>> Pls setup container's reference before first instance!\n")
-            else:
-                # 指向目標容器
-                self._container = container_ptr
-                self.type = Container.Type.Reference
+            self._container = ref_container          # 指向目標容器
+            self.type = Container.Type.Reference
+
+
