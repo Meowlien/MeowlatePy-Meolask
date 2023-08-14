@@ -2,13 +2,13 @@
 - 請勿參考：如需參考(主程式)範例 >> 請至 example.program.py
 '''
 from doctest import debug
-#from MeowkitPy.logging.logger import log
+from MeowkitPy.logging.logger import log
 
 #import MeowkitPy
 #print(dir(MeowkitPy))
 
 
-proj_test: bool = True
+proj_test: bool = False
 
 if proj_test == True:
     
@@ -17,7 +17,6 @@ if proj_test == True:
     <Start> 以下程式會作爲參考範例，因此請記得同步到 example.program.py
     '''
     from Meolask.example.init import app
-    from MeowkitPy.logging.logger import log
     import settings as config
 
     log.LogInfomation('Start >> Project <TEST>')
@@ -34,7 +33,10 @@ if proj_test == True:
     '''
 else:
     log.LogInfomation('Start >> Project')
-    from Meolask import app
+
+    from flask import Flask
+    app = Flask(__name__)
+    
     import settings as config
 
     # 主程式

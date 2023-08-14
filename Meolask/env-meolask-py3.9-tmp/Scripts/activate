@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\Waylon\Meowlien\Workspace\Projects\MeowlatePy-Meolask\Meolask\env-Meolask-py3.9"
+VIRTUAL_ENV="D:\Waylon\Meowlien\Workspace\Projects\MeowlatePy-Meolask\Meolask\env-meolask-py3.9-tmp"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -54,7 +54,7 @@ fi
 
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
-    PS1="(env-Meolask-py3.9) ${PS1:-}"
+    PS1="(env-meolask-py3.9-tmp) ${PS1:-}"
     export PS1
 fi
 
